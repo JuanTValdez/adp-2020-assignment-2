@@ -8,7 +8,7 @@ import { AuthSession } from 'expo';
 
 
 
-export default function Title(){
+export default function HeaderFooter(){
 
     return (
         <View >
