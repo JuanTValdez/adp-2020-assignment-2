@@ -1,0 +1,28 @@
+.App{
+    text-align: center;
+}
+
+.App-header{
+    background-color: #282c34;
+    padding: 2rem;
+    color: white;
+    font-Weight: 'bold';
+    text-Align: 'center';
+    font-size: 20px;
+    margin-bottom: 30px;
+
+}
+
+.field{
+
+    width: 4.5rem;
+    height: 4.5rem;
+    font-size: 2rem;
+    text-align: center;
+    color: grey;
+
+}
+.field[readonly]{
+
+    color: black;
+}

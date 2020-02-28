@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       textAlign: 'center',
       padding: Layout.height / 40,
+       
     
       
     },
