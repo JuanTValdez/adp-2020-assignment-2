@@ -13,7 +13,9 @@ export default class GameBoard extends Component{
         <div>
            {sudoku.rows.map(row => (
            <div className="row" key={row.index}>
-               {row.cols.map(field => (      <BoardInputField field={field} key={field.col}/> 
+               {row.cols.map(field => (<BoardInputField field={field} key={field.col}
+            //    onChange={onChange}
+               /> 
                ))}
            </div>
            ))}

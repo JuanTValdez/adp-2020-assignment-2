@@ -38,6 +38,11 @@ class App extends Component{
       sudoku: generatePuzzle()
     };
   }
+
+  // handleChange = e => {
+
+  // }
+
   render(){
     return(
 
@@ -47,7 +52,9 @@ class App extends Component{
           <h1> Sudoku </h1>
         </header>  
 
-        <GameBoard sudoku={this.state.sudoku}/>
+        <GameBoard sudoku={this.state.sudoku} 
+       // onChange={this.handleChange}
+        />
       </div>
     )
   }
