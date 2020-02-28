@@ -7,6 +7,13 @@ import { StyleSheet, Text, View, requireNativeComponent } from 'react-native';
 
 window.generator = generator;
 
+function generatePuzzle(){
+
+  
+}
+
+
+
 export default function App() {
 
   
