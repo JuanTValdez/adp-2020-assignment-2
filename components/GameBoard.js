@@ -7,14 +7,14 @@ import { StyleSheet, View, Text,  } from 'react-native';
 
 export default class GameBoard extends Component{
     render(){
-        const { sudoku } = this.props;
+        const { sudoku, onChange } = this.props;
 
       return(
         <div>
            {sudoku.rows.map(row => (
            <div className="row" key={row.index}>
                {row.cols.map(field => (<BoardInputField field={field} key={field.col}
-            //    onChange={onChange}
+               onChange={onChange}
                /> 
                ))}
            </div>

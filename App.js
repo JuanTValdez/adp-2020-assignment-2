@@ -5,7 +5,9 @@ import GameBoard from './components/GameBoard.js'
 import HeaderFooter from './components/header.js';
 import { StyleSheet, Text, View, Title, requireNativeComponent } from 'react-native';
 import { render } from 'react-dom';
-import './src/App.css'
+import './src/App.css';
+import produce from 'immer'; 
+
 
 
 window.generator = generator;
@@ -34,14 +36,16 @@ function generatePuzzle(){
 class App extends Component{
   constructor(props){
     super(props);
-    this.state = {
+    this.state = produce({},()=> ({
       sudoku: generatePuzzle()
-    };
+    }));
   }
 
-  // handleChange = e => {
-
-  // }
+  handleChange = e => {
+    this.setState(produce((state) =>{
+      state.sudoku.rows[e.row].cols[e.col].value = e.value;
+    }))
+  }
 
   render(){
     return(
@@ -53,7 +57,7 @@ class App extends Component{
         </header>  
 
         <GameBoard sudoku={this.state.sudoku} 
-       // onChange={this.handleChange}
+       onChange={this.handleChange}
         />
       </div>
     )

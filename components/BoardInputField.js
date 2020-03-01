@@ -3,11 +3,11 @@ import '../src/App.css'
 
 export default class BoardInputField extends Component{
 
-    // handleChange = e =>{
+    handleChange = e =>{
 
-    //     const value = value === "" ? "" : parseInt(e.target.value, 10);
-    //     this.props.onChange({...this.props.field, value: value})
-    // }
+        const value = value === "" ? "" : parseInt(e.target.value, 10);
+        this.props.onChange({...this.props.field, value: value})
+    }
 
 
     render(){
