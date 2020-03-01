@@ -5,7 +5,7 @@ export default class BoardInputField extends Component{
 
     handleChange = e =>{
 
-        const value = value === "" ? "" : parseInt(e.target.value, 10);
+        const value = value === "" ? null : parseInt(e.target.value, 10);
         this.props.onChange({...this.props.field, value: value})
     }
 

@@ -1,5 +1,5 @@
 import React, { useState, Component, useEffect } from 'react';
-import generator from 'sudoku';
+import generator, { solvepuzzle } from 'sudoku';
 import Layout from './components/layout.js';
 import GameBoard from './components/GameBoard.js'
 import HeaderFooter from './components/header.js';
@@ -8,13 +8,17 @@ import { render } from 'react-dom';
 import './src/App.css';
 import produce from 'immer'; 
 
-
+// stopped at 45min
 
 window.generator = generator;
 
 function generatePuzzle(){
   const raw = generator.makepuzzle();
   const result = { rows: [] };
+
+
+  // Takes result and saves the solved puzzle.
+  result.solution = generator.solvepuzzle(raw)
 
   for(let i = 0; i < 9; i++){
     const row = { cols: [], index: i};
@@ -33,6 +37,17 @@ function generatePuzzle(){
   return result;
 }
 
+function checkSolution(sudoku){
+  const candidate = sudoku.rows.map((row) => rows.cols.map((col) => col.value)).flat()
+
+  for (let i=0; i<candidate.length; i++){
+    if(candidate[i] === null || candidate[i] !== sudoku.solution[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
 class App extends Component{
   constructor(props){
     super(props);
@@ -47,18 +62,35 @@ class App extends Component{
     }))
   }
 
+  solveSudoku = e => {
+    this.setState(
+      produce(state => {
+  
+        this.state.sudoku.rows.forEach(row => row.cols.forEach(col => {
+       if(!col.readonly) {
+         col.value = state.sudoku.solution[col.row*9+col.col]
+        }
+        })
+      ); 
+     })
+    )
+  }
+
   render(){
     return(
 
       <div className="App" >
         
-        <header className="App-header">
+       <header className="App-header">
           <h1> Sudoku </h1>
-        </header>  
+       </header>  
 
-        <GameBoard sudoku={this.state.sudoku} 
-       onChange={this.handleChange}
+      <GameBoard sudoku={this.state.sudoku} 
+      onChange={this.handleChange}
         />
+
+      <button onClick={this.solveSudoku}> Auto-Solve </button>
+
       </div>
     )
   }
