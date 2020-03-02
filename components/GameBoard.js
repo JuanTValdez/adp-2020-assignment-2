@@ -11,15 +11,19 @@ export default class GameBoard extends Component{
 
       return(
         <div>
-          {console.log("IM TRIGGERED")}
-          {console.log("Im even more triggered") && sudoku.solveTime && <h1> You solved the sudoku!</h1> }
-         
+   
+          { sudoku.solveTime &&  
+          <h1> {console.log("is this firing")} You solved the sudoku!</h1> 
+          }
+          
           {sudoku.rows.map(row => (
            <div className="row" key={row.index}>
                {row.cols.map(field => (<BoardInputField field={field} key={field.col}
                onChange={onChange}
                /> 
                ))}
+
+              
            </div>
            ))}
 

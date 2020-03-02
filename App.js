@@ -8,9 +8,7 @@ import { render } from 'react-dom';
 import './src/App.css';
 import produce from 'immer'; 
 
-// stopped at 56 minutes.
-// need to solve issue in gameboard.js
-// line 15, sudoku.solvedTime not firing.
+
 
 window.generator = generator;
 
@@ -30,7 +28,8 @@ function generatePuzzle(){
 
 
   // Takes result and saves the solved puzzle.
-  result.solution = generator.solvepuzzle(raw).map(e => e + 1);
+  
+  // result.solution = generator.solvepuzzle(raw).map(e => e + 1);
 
   for(let i = 0; i < 9; i++){
     const row = { cols: [], index: i};
@@ -77,10 +76,11 @@ class App extends Component{
         const solved = checkSolution(state.sudoku)
         if(solved){
           console.log("Solved!")
-          state.sudoku.solvedTime = new Date();
+          state.sudoku.solveTime = new Date();
         }
       }
-    }))
+    })
+    )
   }
 
    
