@@ -1,5 +1,6 @@
 import  React, { Component } from 'react';
 import BoardInputField from './BoardInputField.js';
+import Timer from './Timer.js'
 import { StyleSheet, View, Text,  } from 'react-native';
 
 
@@ -11,7 +12,7 @@ export default class GameBoard extends Component{
 
       return(
         <div>
-   
+          {!sudoku.solveTime && <Timer start={sudoku.startTime}> </Timer>}
           { sudoku.solveTime &&  
           <h1> {console.log("is this firing")} You solved the sudoku!</h1> 
           }
