@@ -8,17 +8,29 @@ import { render } from 'react-dom';
 import './src/App.css';
 import produce from 'immer'; 
 
-// stopped at 45min
+// stopped at 56 minutes.
+// need to solve issue in gameboard.js
+// line 15, sudoku.solvedTime not firing.
 
 window.generator = generator;
 
 function generatePuzzle(){
-  const raw = generator.makepuzzle();
-  const result = { rows: [] };
+  const raw = generator.makepuzzle()
+  const rawSolution = generator.solvepuzzle(raw);
+
+  const formatted = raw.map(e => (e === null ? null : e + 1));
+  const formattedSolution = rawSolution.map(e => e + 1);
+
+  const result = { 
+    rows: [], 
+    solution: formattedSolution,
+    startTime: new Date(),
+    solvedTime: null,
+  };
 
 
   // Takes result and saves the solved puzzle.
-  result.solution = generator.solvepuzzle(raw)
+  result.solution = generator.solvepuzzle(raw).map(e => e + 1);
 
   for(let i = 0; i < 9; i++){
     const row = { cols: [], index: i};
@@ -38,7 +50,7 @@ function generatePuzzle(){
 }
 
 function checkSolution(sudoku){
-  const candidate = sudoku.rows.map((row) => rows.cols.map((col) => col.value)).flat()
+  const candidate = sudoku.rows.map(row => row.cols.map(col => col.value)).flat();
 
   for (let i=0; i<candidate.length; i++){
     if(candidate[i] === null || candidate[i] !== sudoku.solution[i]) {
@@ -53,23 +65,35 @@ class App extends Component{
     super(props);
     this.state = produce({},()=> ({
       sudoku: generatePuzzle()
+      
     }));
   }
 
   handleChange = e => {
-    this.setState(produce((state) =>{
+    this.setState(produce(state =>{
       state.sudoku.rows[e.row].cols[e.col].value = e.value;
+      if(!state.sudoku.solvedTime){
+        console.log("Check Solution");
+        const solved = checkSolution(state.sudoku)
+        if(solved){
+          console.log("Solved!")
+          state.sudoku.solvedTime = new Date();
+        }
+      }
     }))
   }
+
+   
+  
 
   solveSudoku = e => {
     this.setState(
       produce(state => {
   
-        this.state.sudoku.rows.forEach(row => row.cols.forEach(col => {
-       if(!col.readonly) {
-         col.value = state.sudoku.solution[col.row*9+col.col]
-        }
+        state.sudoku.rows.forEach(row => row.cols.forEach(col => {
+       
+         col.value = state.sudoku.solution[col.row * 9 + col.col]
+        
         })
       ); 
      })
