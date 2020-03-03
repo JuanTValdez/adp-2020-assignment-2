@@ -14,7 +14,7 @@ export default class GameBoard extends Component{
         <div>
           {!sudoku.solveTime && <Timer start={sudoku.startTime}> </Timer>}
           { sudoku.solveTime &&  
-          <h1> {console.log("is this firing")} You solved the sudoku!</h1> 
+          <h3> You win, but the princess is in another castle.</h3> 
           }
           
           {sudoku.rows.map(row => (

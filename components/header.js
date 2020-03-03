@@ -25,7 +25,7 @@ export default function HeaderFooter(){
 const styles = StyleSheet.create({
 
     title: {
-      backgroundColor: '#282c34',
+      backgroundColor: '#e1231a',
       color: 'white',
       fontSize: 50,
       fontWeight: 'bold',
@@ -36,9 +36,10 @@ const styles = StyleSheet.create({
       
     },
     footer:{
-      backgroundColor: '#282c34',
+      backgroundColor: '#e1231a',
       paddingVertical: Layout.height / 100,
       width: Layout.width,
+      margin: 'auto',
       position: 'fixed',
       bottom: 0,
       color: 'white',

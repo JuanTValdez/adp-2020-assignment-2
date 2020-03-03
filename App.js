@@ -1,16 +1,14 @@
-import React, { useState, Component, useEffect } from 'react';
-import generator, { solvepuzzle } from 'sudoku';
-import Layout from './components/layout.js';
+import React, { useState, Component, useEffect } from 'react'
+import generator, { solvepuzzle } from 'sudoku'
 import GameBoard from './components/GameBoard.js'
-import HeaderFooter from './components/header.js';
-import { StyleSheet, Text, View, Title, requireNativeComponent } from 'react-native';
-import { render } from 'react-dom';
+import HeaderFooter from './components/header.js'
+import Button from '@material-ui/core/Button'
+// Sudoku Module
+import produce from 'immer';
 import './src/App.css';
-import produce from 'immer'; 
+ 
 
-
-
-window.generator = generator;
+// Generates Sudoku puzzle.
 
 function generatePuzzle(){
   const raw = generator.makepuzzle()
@@ -72,10 +70,10 @@ class App extends Component{
     this.setState(produce(state =>{
       state.sudoku.rows[e.row].cols[e.col].value = e.value;
       if(!state.sudoku.solvedTime){
-        console.log("Check Solution");
+  
         const solved = checkSolution(state.sudoku)
         if(solved){
-          console.log("Solved!")
+    
           state.sudoku.solveTime = new Date();
         }
       }
@@ -105,15 +103,28 @@ class App extends Component{
 
       <div className="App" >
         
-       <header className="App-header">
-          <h1> Sudoku </h1>
-       </header>  
+              <HeaderFooter />
+              <GameBoard sudoku={this.state.sudoku} 
+              onChange={this.handleChange}
+              />
 
-      <GameBoard sudoku={this.state.sudoku} 
-      onChange={this.handleChange}
-        />
+              <button className="solveButton" onClick={this.solveSudoku}>  Use the Force!  </button>
 
-      <button onClick={this.solveSudoku}> Auto-Solve </button>
+        <div className="numButton"> 
+
+              <button> 1 </button>
+              <button> 2 </button>
+              <button> 3 </button>
+              <button> 4 </button>
+              <button> 5 </button>
+              <button> 6 </button>
+              <button> 7 </button>
+              <button> 8 </button>
+              <button> 9 </button>
+
+        </div>
+
+
 
       </div>
     )
