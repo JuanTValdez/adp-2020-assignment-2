@@ -8,8 +8,8 @@ export default function NumberButtons(props)
 
         <View >
 
-            <TouchableOpacity style={styles.button}>
-                  <Text> 1 </Text>
+            <TouchableOpacity style={styles.container}>
+                  <Text style={styles.button}> 1 </Text>
             </TouchableOpacity>
 
         </View>
@@ -20,14 +20,14 @@ export default function NumberButtons(props)
 
 }
     const styles = StyleSheet.create({
-
-        button:{
+        container: {
             height: Layout.height,
             width: Layout.width,
-            fontSize: '40'
+        },
+        button:{
+            
+            fontSize: 40
 
         }
 
-
-
-    });
+});

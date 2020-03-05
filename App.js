@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button'
 import produce from 'immer';
 import './src/App.css';
  
+// sudoku puzzle generated was created with tutorial via FreeCodeCamps. 
 
 // Generates Sudoku puzzle.
 
@@ -27,7 +28,7 @@ function generatePuzzle(){
 
   // Takes result and saves the solved puzzle.
   
-  // result.solution = generator.solvepuzzle(raw).map(e => e + 1);
+
 
   for(let i = 0; i < 9; i++){
     const row = { cols: [], index: i};
@@ -108,7 +109,7 @@ class App extends Component{
               onChange={this.handleChange}
               />
 
-              <button className="solveButton" onClick={this.solveSudoku}>  Use the Force!  </button>
+              <button className="solveButton" onClick={this.solveSudoku}> Are you stumped?  Use the Force!  </button>
 
         <div className="numButton"> 
 
