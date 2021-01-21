@@ -10,7 +10,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.4",
     "expo": "~36.0.0",
-    "immer": "^5.3.6",
+    "immer": "^8.0.1",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
